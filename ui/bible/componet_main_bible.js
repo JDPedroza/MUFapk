@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import { createIconSetFromIcoMoon } from '@expo/vector-icons';
+
 import configBibleIcons from '../../utils/fonts/configBibleIcons.json';
 import Versions from './componet_versions'
 import Books from './componet_books'
@@ -12,27 +13,27 @@ const IconBible = createIconSetFromIcoMoon(configBibleIcons, 'BibleIcons');
 
 function VersionsScreen({navigation}) {
   return (
-    <Versions/>
+    <Versions nav={navigation}/>
   );
 }
-function BooksScreen() {
+function BooksScreen({route, navigation}) {
   return (
-    <Books/>
+    <Books rte={route} nav={navigation}/>
   );
 }
-function ChaptersScreen() {
+function ChaptersScreen({route, navigation}) {
   return (
-    <Chapters/>
+    <Chapters rte={route} nav={navigation}/>
   );
 }
-function VersesScreen() {
+function VersesScreen({route, navigation}) {
   return (
-    <Verses/>
+    <Verses rte={route} nav={navigation}/>
   );
 }
-function ReadingScreen() {
+function ReadingScreen({route, navigation}) {
   return (
-    <Reading/>
+    <Reading rte={route} nav={navigation}/>
   );
 }
 
@@ -67,17 +68,18 @@ function Bible() {
                 : 'readingWhite';
             }
               iconColor = focused
-              ? '#1F618D'
+              ? '#0678de'
               : 'black';
             return <IconBible name={iconName} size={24} color={iconColor}/>
           },
         })}
         tabBarOptions={{
-          activeTintColor: '#1F618D',
+          activeTintColor: '#0678de',
           inactiveTintColor: 'black',
           labelStyle: { fontSize: 7 },
-          showIcon: true
+          showIcon: true,
         }}
+        lazy={true}
       >
         <Tab.Screen name="Versión" component={VersionsScreen}/>
         <Tab.Screen name="Libro" component={BooksScreen} />
